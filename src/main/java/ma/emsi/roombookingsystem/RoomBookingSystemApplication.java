@@ -6,17 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 
 @SpringBootApplication
 public class RoomBookingSystemApplication implements CommandLineRunner {
     @Autowired
 private SalleRepository salleRepository;
+    @Autowired
+    private RepositoryRestConfiguration restConfiguration;
     public static void main(String[] args) {
         SpringApplication.run(RoomBookingSystemApplication.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
+        restConfiguration.exposeIdsFor(Salle.class);
 /* salleRepository.save(new Salle(null,"grande taille",50,"5A"));
 salleRepository.save(new Salle(null,"petite taille",20,"1A"));
 salleRepository.save(new Salle(null,"moyenne taille",35,"8E"));
