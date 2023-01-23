@@ -1,15 +1,15 @@
 package ma.emsi.roombookingsystem.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import net.minidev.json.annotate.JsonIgnore;
 
 import java.io.Serializable;
+import java.util.*;
+
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor @ToString
 public class Salle implements Serializable {
@@ -18,4 +18,13 @@ public class Salle implements Serializable {
     private String designation;
     private int capacite;
     private String nom;
+    @JsonIgnore
+    @OneToMany(mappedBy = "salle",fetch = FetchType.EAGER)
+    private Set<Reservation> reservations=new HashSet<Reservation>();
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+   private List<Materiel> materiels=new ArrayList<Materiel>();
+    public void addReservation(Reservation reservation){
+        reservations.add(reservation);
+        reservation.setSalle(this);
+    }
 }

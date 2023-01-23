@@ -13,6 +13,7 @@ import java.util.List;
 @CrossOrigin("*")
 @RepositoryRestResource
 public interface SalleRepository extends JpaRepository<Salle,Long> {
+    Salle findById(int id);
     @RestResource(path = "/byDesignation")
     public List<Salle> findByDesignationContains(@Param("mc") String des);
     @RestResource(path = "/byDesignationPage")
