@@ -31,7 +31,11 @@ private SalleRepository salleRepository;
     public void run(String... args) throws Exception {
         restConfiguration.exposeIdsFor(Salle.class);
         restConfiguration.exposeIdsFor(Reservation.class);
-      Reservation reservation1=new Reservation();
+
+
+
+
+   /*   Reservation reservation1=new Reservation();
       reservation1.setSalle(null);
         reservation1.setBeginRes(new Date(2012,12,6,17,54,0));
         reservation1.setEndRes(new Date(2020,12,6,17,54,0));
@@ -43,7 +47,7 @@ private SalleRepository salleRepository;
         reservation1.setSalle(salle1);
         reservation2.setSalle(salle1);
         reservationRepository.save(reservation1);
-        reservationRepository.save(reservation2);
+        reservationRepository.save(reservation2);*/
 
       /*  Salle sa = salleRepository.save(new Salle(null, "Najm", 35, "8E",null,null));
        reservationRepository.save(new Reservation(null,new Date(2012,12,6,17,54,0),new Date(2012,12,6,17,54,0),sa));

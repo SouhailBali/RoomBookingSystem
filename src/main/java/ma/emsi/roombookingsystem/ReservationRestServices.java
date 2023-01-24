@@ -30,8 +30,13 @@ public class ReservationRestServices {
         return reservationRepository.findById(id,PageRequest.of(page,5));
     }
     @PutMapping(value="/reservationlist/{id}")
-    Reservation update(@PathVariable(name="id") Long id,@RequestBody Reservation reservation){
+    Reservation update(@PathVariable(name="id") Long id,@RequestBody ReservationRequest reservationRequest){
+        Salle salle=salleRepository.findById(reservationRequest.salle_id);
+        Reservation reservation=new Reservation();
         reservation.setId(id);
+        reservation.setBeginRes(reservationRequest.beginRes);
+        reservation.setEndRes(reservationRequest.endRes);
+        reservation.setSalle(salle);
         return reservationRepository.save(reservation);
     }
    /* @PostMapping(value="/reservationlist")

@@ -1,5 +1,7 @@
 package ma.emsi.roombookingsystem.pojos;
 
+import ma.emsi.roombookingsystem.entities.Salle;
+
 import java.util.Date;
 
 public class ReservationRequest {
