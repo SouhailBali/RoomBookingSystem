@@ -18,6 +18,7 @@ public class Salle implements Serializable {
     private String designation;
     private int capacite;
     private String nom;
+    private String photoName;
     @JsonIgnore
     @OneToMany(mappedBy = "salle",fetch = FetchType.EAGER)
     private Set<Reservation> reservations=new HashSet<Reservation>();
