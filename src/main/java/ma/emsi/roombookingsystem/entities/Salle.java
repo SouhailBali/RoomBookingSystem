@@ -20,10 +20,8 @@ public class Salle implements Serializable {
     private String nom;
     private String photoName;
     @JsonIgnore
-    @OneToMany(mappedBy = "salle",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "salle",fetch = FetchType.LAZY)
     private Set<Reservation> reservations=new HashSet<Reservation>();
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-   private List<Materiel> materiels=new ArrayList<Materiel>();
     public void addReservation(Reservation reservation){
         reservations.add(reservation);
         reservation.setSalle(this);

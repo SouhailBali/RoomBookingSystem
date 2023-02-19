@@ -1,8 +1,10 @@
 package ma.emsi.roombookingsystem;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import ma.emsi.roombookingsystem.dao.MaterielRepository;
 import ma.emsi.roombookingsystem.dao.ReservationRepository;
 import ma.emsi.roombookingsystem.dao.SalleRepository;
+import ma.emsi.roombookingsystem.entities.Materiel;
 import ma.emsi.roombookingsystem.entities.Reservation;
 import ma.emsi.roombookingsystem.entities.Salle;
 import ma.emsi.roombookingsystem.pojos.ReservationRequest;
@@ -18,9 +20,11 @@ import java.util.List;
 @RestController
 public class ReservationRestServices {
     @Autowired
+    MaterielRepository materielRepository;
+    @Autowired
     SalleRepository salleRepository;
     @Autowired
-    private ReservationRepository reservationRepository;
+    ReservationRepository reservationRepository;
     @GetMapping(value="/reservationlist")
     Page<Reservation> reservationList(@RequestParam(name = "page", defaultValue = "0") int page){
         return reservationRepository.findAll(PageRequest.of(page, 5));
@@ -46,10 +50,12 @@ public class ReservationRestServices {
    @PostMapping(value="/reservationlist")
    Reservation save(@RequestBody ReservationRequest reservationRequest){
        Salle salle=salleRepository.findById(reservationRequest.salle_id);
+       Materiel materiel=materielRepository.findById(reservationRequest.materiel_id);
        Reservation reservation=new Reservation();
        reservation.setBeginRes(reservationRequest.beginRes);
        reservation.setEndRes(reservationRequest.endRes);
        reservation.setSalle(salle);
+       reservation.setMateriel(materiel);
        return reservationRepository.save(reservation);
    }
     @DeleteMapping(value="/reservationlist/{id}")

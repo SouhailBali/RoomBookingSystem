@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor
@@ -16,6 +18,6 @@ public class Materiel implements Serializable {
     private Long id;
     private String reference;
     private String nom;
-    @ManyToMany(mappedBy = "materiels")
-    Collection<Salle> salles;
+    @OneToMany(mappedBy = "materiel",fetch = FetchType.EAGER)
+    private Set<Reservation> reservations=new HashSet<Reservation>();
 }

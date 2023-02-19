@@ -2,6 +2,7 @@ package ma.emsi.roombookingsystem;
 
 import ma.emsi.roombookingsystem.dao.ReservationRepository;
 import ma.emsi.roombookingsystem.dao.SalleRepository;
+import ma.emsi.roombookingsystem.entities.Materiel;
 import ma.emsi.roombookingsystem.entities.Reservation;
 import ma.emsi.roombookingsystem.entities.Salle;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ private SalleRepository salleRepository;
     public void run(String... args) throws Exception {
         restConfiguration.exposeIdsFor(Salle.class);
         restConfiguration.exposeIdsFor(Reservation.class);
+        restConfiguration.exposeIdsFor(Materiel.class);
 
 
 

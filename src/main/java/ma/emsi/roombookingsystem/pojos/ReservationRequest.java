@@ -9,5 +9,6 @@ public class ReservationRequest {
     public Date beginRes;
     public Date endRes;
     public int salle_id;
+    public int materiel_id;
     public String photoName;
 }
